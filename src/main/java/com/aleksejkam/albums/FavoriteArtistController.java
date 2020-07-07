@@ -26,7 +26,6 @@ public class FavoriteArtistController {
     @PostMapping("/{userId}/favorite-artists/{amgArtistId}")
     public ResponseEntity addUserFavoriteArtist(@PathVariable("userId") Integer userId, @PathVariable("amgArtistId") Integer amgArtistId) {
         List<Integer> favoriteArtists = userFavoriteArtists.get(userId);
-        System.out.println("addUserFavoriteArtists");
 
         if (favoriteArtists == null) {
             favoriteArtists = new ArrayList<>();
@@ -45,7 +44,6 @@ public class FavoriteArtistController {
     @DeleteMapping("/{userId}/favorite-artists/{amgArtistId}")
     public ResponseEntity removeUserFavoriteArtist(@PathVariable("userId") Integer userId, @PathVariable("amgArtistId") Integer amgArtistId) {
         List<Integer> favoriteArtists = userFavoriteArtists.get(userId);
-        System.out.println("removeUserFavoriteArtist");
 
         if (favoriteArtists != null && favoriteArtists.contains(amgArtistId)) {
             favoriteArtists.remove(amgArtistId);
