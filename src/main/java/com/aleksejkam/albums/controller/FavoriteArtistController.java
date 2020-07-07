@@ -1,4 +1,4 @@
-package com.aleksejkam.albums;
+package com.aleksejkam.albums.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
