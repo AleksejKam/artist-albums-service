@@ -13,12 +13,7 @@ repositories {
 
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
-    testImplementation(
-//            'org.junit.jupiter:junit-jupiter-api:5.4.2',
-//            'org.junit.jupiter:junit-jupiter-params:5.4.2',
-//            'org.assertj:assertj-core:3.11.1',
-//            'org.mockito:mockito-junit-jupiter:2.23.4',
-            'org.springframework.boot:spring-boot-starter-test') {
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
 
