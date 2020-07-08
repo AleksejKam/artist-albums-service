@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 @JsonIgnoreProperties
 public class Album implements Serializable {
@@ -14,6 +15,11 @@ public class Album implements Serializable {
     private String artistName;
     private String collectionName;
     private String artistViewUrl;
+    private LocalDateTime lastUpdate;
+
+    public Album() {
+        this.lastUpdate = LocalDateTime.now();
+    }
 
     public String getWrapperType() {
         return wrapperType;
@@ -38,5 +44,9 @@ public class Album implements Serializable {
 
     public String getArtistViewUrl() {
         return artistViewUrl;
+    }
+
+    public LocalDateTime getLastUpdate() {
+        return lastUpdate;
     }
 }
