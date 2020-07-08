@@ -3,6 +3,7 @@ package com.aleksejkam.albums.controller;
 import com.aleksejkam.albums.entity.Album;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -24,7 +25,7 @@ class TopFiveAlbumControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    @Test
+    @RepeatedTest(100)
     public void shouldGetArtistTopAlbums() throws Exception {
         // execute
         MvcResult result = this.mockMvc.perform(get("/artists/3492/top-five-albums")).andDo(print()).andExpect(status().isOk())
