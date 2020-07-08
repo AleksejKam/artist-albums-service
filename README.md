@@ -6,12 +6,12 @@ pages:
 2. View top5 albums of a selected favourite artist
 
 Store only List of amgArtistId for userId:
-GET     http://localhost:8080/users/{userId}/favorite-artists
-POST    http://localhost:8080/users/{userId}/favorite-artists/{amgArtistId}
-DELETE  http://localhost:8080/users/{userId}/favorite-artists/{amgArtistId}
+- GET     `http://localhost:8080/users/{userId}/favorite-artists`
+- POST    `http://localhost:8080/users/{userId}/favorite-artists/{amgArtistId}`
+- DELETE  `http://localhost:8080/users/{userId}/favorite-artists/{amgArtistId}`
 
 Store top5 albums for amgArtistId. Refresh albums after 12 hours from https://itunes.apple.com
-GET     http://localhost:8080/artists/{amgArtistId}/top-five-albums
+- GET     `http://localhost:8080/artists/{amgArtistId}/top-five-albums`
 
 ---------------------
 iTunes API in a nutshell:
