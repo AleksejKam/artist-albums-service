@@ -9,27 +9,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/artists")
 public class TopFiveAlbumController {
-    private Map<Integer, List<Album>> artistTopAlbums = new HashMap<>();
+    private ConcurrentHashMap<Integer, CopyOnWriteArrayList<Album>> artistTopAlbums = new ConcurrentHashMap<>();
 
     @GetMapping("/{amgArtistId}/top-five-albums")
     public List<Album> getArtistTopAlbums(@PathVariable("amgArtistId") Integer amgArtistId) throws IOException {
-        List<Album> topAlbums = artistTopAlbums.get(amgArtistId);
+        CopyOnWriteArrayList<Album> topAlbums = artistTopAlbums.get(amgArtistId);
 
         if (topAlbums == null) {
             ITunesAlbumsResult iTunesAlbumsResult = ITunesService.getTopFiveAlbumsBy(amgArtistId);
 
             List<Album> albums = iTunesAlbumsResult.getResults();
 
-            List<Album> finalTopAlbums = new ArrayList<>();
+            CopyOnWriteArrayList<Album> finalTopAlbums = new CopyOnWriteArrayList<>();
 
             albums.stream()
                     .filter(v -> v.isCollection())

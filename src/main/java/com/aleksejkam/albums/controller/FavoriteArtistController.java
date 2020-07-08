@@ -4,16 +4,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/users")
 public class FavoriteArtistController {
-    private Map<Integer, List<Integer>> userFavoriteArtists = new HashMap<>();
+    private ConcurrentHashMap<Integer, CopyOnWriteArrayList<Integer>> userFavoriteArtists = new ConcurrentHashMap<>();
 
     @GetMapping("/{userId}/favorite-artists")
     public List<Integer> getUserFavoriteArtists(@PathVariable("userId") Integer userId) {
-        List<Integer> favoriteArtists = userFavoriteArtists.get(userId);
+        CopyOnWriteArrayList<Integer> favoriteArtists = userFavoriteArtists.get(userId);
 
         if (favoriteArtists == null) {
             return new ArrayList<>();
@@ -25,10 +27,10 @@ public class FavoriteArtistController {
 
     @PostMapping("/{userId}/favorite-artists/{amgArtistId}")
     public ResponseEntity addUserFavoriteArtist(@PathVariable("userId") Integer userId, @PathVariable("amgArtistId") Integer amgArtistId) {
-        List<Integer> favoriteArtists = userFavoriteArtists.get(userId);
+        CopyOnWriteArrayList<Integer> favoriteArtists = userFavoriteArtists.get(userId);
 
         if (favoriteArtists == null) {
-            favoriteArtists = new ArrayList<>();
+            favoriteArtists = new CopyOnWriteArrayList<>();
         }
 
         if (!favoriteArtists.contains(amgArtistId)) {
@@ -43,7 +45,7 @@ public class FavoriteArtistController {
 
     @DeleteMapping("/{userId}/favorite-artists/{amgArtistId}")
     public ResponseEntity removeUserFavoriteArtist(@PathVariable("userId") Integer userId, @PathVariable("amgArtistId") Integer amgArtistId) {
-        List<Integer> favoriteArtists = userFavoriteArtists.get(userId);
+        CopyOnWriteArrayList<Integer> favoriteArtists = userFavoriteArtists.get(userId);
 
         if (favoriteArtists != null && favoriteArtists.contains(amgArtistId)) {
             favoriteArtists.remove(amgArtistId);
