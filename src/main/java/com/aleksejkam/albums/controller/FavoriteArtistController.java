@@ -37,10 +37,10 @@ public class FavoriteArtistController {
             favoriteArtists.add(amgArtistId);
             userFavoriteArtists.put(userId, favoriteArtists);
 
-            return ResponseEntity.ok("addUserFavoriteArtists");
+            return ResponseEntity.ok("Artist added to favorites of user");
         }
 
-        return ResponseEntity.badRequest().body("badddd addUserFavoriteArtists");
+        return ResponseEntity.badRequest().body("Artist is not added, because exist in favorites of user");
     }
 
     @DeleteMapping("/{userId}/favorite-artists/{amgArtistId}")
@@ -50,9 +50,9 @@ public class FavoriteArtistController {
         if (favoriteArtists != null && favoriteArtists.contains(amgArtistId)) {
             favoriteArtists.remove(amgArtistId);
 
-            return ResponseEntity.ok("removeUserFavoriteArtist");
+            return ResponseEntity.ok("Artist removed from favorites of user");
         }
 
-        return ResponseEntity.badRequest().body("badddd removeUserFavoriteArtist");
+        return ResponseEntity.badRequest().body("Artist is not removed, because is not exist in favorites of user");
     }
 }
