@@ -43,8 +43,6 @@ public final class ITunesService {
         RestTemplate restTemplate = new RestTemplate();
         String result = restTemplate.getForObject(uri, String.class, params);
 
-        System.out.println(result);
-
         return result;
     }
 }
