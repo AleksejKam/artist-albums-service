@@ -1,5 +1,6 @@
 package com.aleksejkam.albums.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -15,6 +16,8 @@ public class Album implements Serializable {
     private String artistName;
     private String collectionName;
     private String artistViewUrl;
+    @JsonIgnore
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     private LocalDateTime lastUpdate;
 
     public Album() {
