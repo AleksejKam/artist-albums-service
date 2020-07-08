@@ -49,8 +49,8 @@ public class TopFiveAlbumController {
         CopyOnWriteArrayList<Album> finalTopAlbums = new CopyOnWriteArrayList<>();
 
         albums.stream()
-                .filter(a -> a.isCollection())
-                .forEach(v -> finalTopAlbums.add(v));
+                .filter(Album::isCollection)
+                .forEach(finalTopAlbums::add);
 
         return finalTopAlbums;
     }

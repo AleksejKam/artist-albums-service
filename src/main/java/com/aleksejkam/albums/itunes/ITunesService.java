@@ -14,7 +14,7 @@ public final class ITunesService {
         throw new AssertionError("Suppress default constructor for non-instantiability");
     }
 
-    public static ITunesAlbumsResult getTopFiveAlbumsBy(Integer amgArtistId) throws IOException {
+    public static ITunesAlbumsResult getTopFiveAlbumsBy(Integer amgArtistId) {
         String data = requestTopFiveAlbumsBy(amgArtistId);
 
         return parseAlbumsResult(data);
@@ -34,15 +34,14 @@ public final class ITunesService {
         return itunesSearchResult;
     }
 
-    private static String requestTopFiveAlbumsBy(Integer amgArtistId) throws IOException {
+    private static String requestTopFiveAlbumsBy(Integer amgArtistId) {
         final String uri = "https://itunes.apple.com/lookup?amgArtistId={amgArtistId}&entity=album&limit=5";
 
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = new HashMap<>();
         params.put("amgArtistId", amgArtistId.toString());
 
         RestTemplate restTemplate = new RestTemplate();
-        String result = restTemplate.getForObject(uri, String.class, params);
 
-        return result;
+        return restTemplate.getForObject(uri, String.class, params);
     }
 }

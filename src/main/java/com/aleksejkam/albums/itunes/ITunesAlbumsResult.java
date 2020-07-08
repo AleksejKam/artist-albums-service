@@ -12,7 +12,7 @@ public class ITunesAlbumsResult implements Serializable {
 
     private int resultCount;
 
-    private List<Album> results = new ArrayList<Album>();
+    private List<Album> results = new ArrayList<>();
 
     public int getResultCount() {
         return resultCount;
